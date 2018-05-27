@@ -1,0 +1,18 @@
+<div>
+    <p>我们的加，  哈哈哈</p>
+
+    <!-- 父组件传值给字组件的用法（数字可直接放到“”内，字母若是当作字面量来使用须加‘’，不加‘’则当作变量使用） -->
+    <listItem [data]="123456" [item]="'abc'"></listItem>
+
+    <!--下面是循环的用法  -->
+    <listItem *ngFor="let a of arr" [section]="a"></listItem>
+
+    <!-- ngIf的用法和事件的用法，事件自定义的函数必须加圆括号 -->
+    <input type="button" value="button" (click)="boxDisappear()">
+    <div class="box" *ngIf="show">
+
+    </div>
+
+    <!-- 通过http得到的数据(*ngFor=“let b of arr1”)我把of错误地写成in导致编译一直通不过 -->
+    <listItem *ngFor="let b of arr1" [data1]="b"></listItem>
+</div>
