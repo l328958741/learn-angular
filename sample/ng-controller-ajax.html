@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        let app = angular.module('myApp', []);
+
+        app.controller('ctr', function($scope){
+            $scope.arr = [];
+            
+            $.ajax({
+                url: 'a.txt',
+                dataType: 'json',
+            }).then(res=>{
+                console.log(res);
+                $scope.arr = res;
+
+                $scope.$apply(); //为什么加上这行代码，p标签中的数据就可以渲染出来了？因为
+                                 //ajax是异步操作，而angular对检测数据是同步操作，在ajax的结果
+                                 //还没有回来时，angular已经完成了检测数据，此时发现arr仍是空数组
+                                 //因而没有数据被渲染到p标签中，是哟个$scope.$apply()意思是强制
+                                 //angular再次检测数据，这时它发现ajax返回给arr的数据，因此将它
+                                 //渲染进p标签，除了这种方法外，还可以使用angular自带的$http
+            }, err=>{
+                console.log(err);
+            })
+        })
+    </script>
+</head>
+<body>
+    <div ng-controller="ctr">
+        <div ng-repeat="a in arr">
+            <p>{{a.name}}</p>
+        </div>
+    </div>
+</body>
+</html>

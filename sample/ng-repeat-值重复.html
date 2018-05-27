@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>
+</head>
+<body ng-app="">
+    <!-----------数组arr中有两个重复的值为2，必须用track by $index给定一个key，才能显示重复的值-------- -->
+    <div ng-init="arr=[1,2,4,5,2]">
+        <li ng-repeat="item in arr track by $index">{{$index}}-{{item}}</li>
+    </div>
+</body>
+</html>

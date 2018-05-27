@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <!---------在html上挂着根节点，而不是在head标签上------- -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>
+    <script>
+        let app = angular.module('myApp', []);
+
+        app.controller('ctr', function(){
+            alert('a');
+        })
+    </script>
+</head>
+<body ng-init="a=true">
+    <div ng-controller="ctr">
+        <input type="button" value="button" ng-click="a=!a">
+        <div ng-show="a">
+            lsldkfal<br>
+            slhdlfhsldh<br>
+            sdjflsdjlfsjd<br>
+            sldhflsjdlf<br>
+        </div>
+    </div>
+</body>
+</html>

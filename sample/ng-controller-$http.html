@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>
+    <script>
+        let app = angular.module('myApp', []);
+
+        app.controller('ctr', function($scope, $http){
+            $scope.arr = [];
+
+            $http.get('a.txt').then(res=>{
+                console.log(res.data);
+                $scope.arr = res.data;
+            }, res=>{
+                console.log(res);
+            })
+            
+        })
+    </script>
+</head>
+<body>
+    <div ng-controller="ctr">
+        <div ng-repeat="a in arr">
+            <p>{{a.name}}</p>
+        </div>
+    </div>
+</body>
+</html>

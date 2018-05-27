@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>
+    <script>
+        let app = angular.module('myApp', []);
+
+        app.controller('ctr', function($scope, $http){
+            $scope.arr = [];
+
+            $scope.timeRandom = {
+                time: '1527323478596' //通过在浏览器控制台使用方法 new Date().getTime();得到的数据
+            }
+
+            $http.get('a.txt').then(res=>{
+                $scope.arr = res.data;
+            }, res=>{
+                alert(res);
+            })
+        });
+
+        app.filter('unkownNum', function(){
+            return function(input, arg){
+                return input.substring(0, 2) + '***';
+            }
+        })
+    </script>
+</head>
+<body>
+    <div ng-controller="ctr">
+        <p>{{ timeRandom.time | date }}</p>
+        <p>{{ timeRandom.time | date:"yyyy-MM-dd" }} MM要大写，如果是mm则出错</p> 
+
+        <p ng-repeat="item in arr">{{item.pass | unkownNum}}</p>
+    </div>
+    
+</body>
+</html>
